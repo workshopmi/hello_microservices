@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  hello-world:
+    build: .
+    ports:
+      - 8888:8888
+    depends_on:
+      - postgres_db
+    restart: always
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/hello
+  postgres_db:
+    image: postgres:11
+    ports:
+      - 5432:5432
+    volumes:
+      - $PWD/init.sql:/docker-entrypoint-initdb.d/init.sql

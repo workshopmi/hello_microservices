@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-class HelloController(val repository: HelloWorldRepository) {
+class HelloController (val repository: HelloWorldRepository)  {
+
     @GetMapping("/helloworld")
     fun hello(): String {
-        repository.save(HelloWorld())
+        repository.save(HelloWorld(name = "demo"))
         return "SUCCESS"
     }
 }
